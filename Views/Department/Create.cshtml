@@ -1,0 +1,67 @@
+﻿@model Department
+@{
+    var errorMessages =(List<string>) ViewBag.ErrorMessages;
+}
+<h1>
+    Create a New Department
+</h1>
+
+<div class="container">
+    <!--POST the Current Form to the Create() method in Controller which is applied with HttpPost attribute-->
+    <form asp-action="Create">
+        <!--The Validation Summary for all Model Level Error Messages
+        ModelOnly: Error Message for All Properties of Model class
+            here it is Department
+        -->
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group">
+            <label>DeptNo</label>
+            <!--Binding HTML inout element with the 'DeptNo' property from the Model class-->
+            <input type="text" asp-for="DeptNo" class="form-control" />
+            <!--Add a Div tag for shown Error Messages -->
+            <span class="text-danger" asp-validation-for="DeptNo"></span>
+        </div>
+        <div class="form-group">
+            <label>DeptName</label>
+            <input type="text" asp-for="DeptName" class="form-control" />
+            <span class="text-danger" asp-validation-for="DeptName"></span>
+        </div>
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" asp-for="Location" class="form-control" />
+            <span class="text-danger" asp-validation-for="Location"></span>
+        </div>
+        <div class="form-group">
+            <label>Capacity</label>
+            <input type="text" asp-for="Capacity" class="form-control" />
+            <span class="text-danger" asp-validation-for="Capacity"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-success" />
+        </div>
+    </form>
+
+
+    @if (errorMessages != null)
+    {
+        @if (errorMessages.Count() > 0)
+        {
+            <div class="text-danger">
+                @foreach (var message in errorMessages)
+                {
+                    <span>@message</span>
+                }
+            </div>
+        }
+    }
+</div>
+<div class="container">
+    <!--Go to Index Actio  Method-->
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+ @{
+     await Html.RenderPartialAsync("_ValidationScriptsPartial");
+ }
+}

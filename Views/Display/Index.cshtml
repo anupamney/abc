@@ -1,0 +1,93 @@
+﻿@model mbaspnetcore6.Repositories.Displaydata
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Data from both the tables</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => Model.Employees.FirstOrDefault().EmpNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => Model.Employees.FirstOrDefault().EmpName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => Model.Employees.FirstOrDefault().Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => Model.Employees.FirstOrDefault().Designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => Model.Employees.FirstOrDefault().DeptNo)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Employees)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Designation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeptNo)
+                </td>              
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Departments.FirstOrDefault().DeptNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Departments.FirstOrDefault().DeptName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Departments.FirstOrDefault().Location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Departments.FirstOrDefault().Capacity)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dept in Model.Departments)
+             {
+               <tr>
+                   <td>
+                       @dept.DeptNo
+                   </td>
+                   <td>
+                       @dept.DeptName
+                   </td>
+                   <td>
+                       @dept.Location
+                   </td>
+                   <td>
+                       @dept.Capacity
+                   </td>                   
+               </tr>      
+             }
+        </tbody>
+    </table>

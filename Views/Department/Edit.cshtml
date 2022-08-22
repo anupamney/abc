@@ -1,0 +1,60 @@
+﻿@model Department
+@{
+
+    var errorMessages =(List<string>) ViewBag.ErrorMessages;
+
+}
+
+<h1>
+   @ViewBag.Message
+</h1>
+
+
+
+<div class="container">
+    <!--POST the Current Form to the Create() method in Controller which is applied with HttpPost attribute-->
+    <form asp-action="Edit">
+        <div class="form-group">
+            <label>DeptNo</label>
+            <!--Binding HTML inout element with the 'DeptNo' property from the Model class-->
+            <input type="text" asp-for="DeptNo" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label>DeptName</label>
+            <input type="text" asp-for="DeptName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" asp-for="Location" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Capacity</label>
+            <input type="text" asp-for="Capacity" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-success" />
+        </div>
+    </form>
+    <hr />
+
+    <!--Show Error Message if any-->
+    @if (errorMessages != null)
+    {
+        @if (errorMessages.Count() > 0)
+        {
+            <div class="text-danger">
+                @foreach (var message in errorMessages)
+                {
+                    <span>@message</span>
+                }
+            </div>
+        }
+    }
+
+
+
+</div>
+<div class="container">
+    <!--Go to Index Actio  Method-->
+    <a asp-action="Index">Back to List</a>
+</div>

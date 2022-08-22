@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Department> 
+@{
+
+
+    <h1>The List of Department</h1>
+    <a asp-action="Create">Create New</a>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeptNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeptName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Capacity)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dept in Model)
+             {
+               <tr>
+                   <td>
+                       @dept.DeptNo
+                   </td>
+                   <td>
+                       @dept.DeptName
+                   </td>
+                   <td>
+                       @dept.Location
+                   </td>
+                   <td>
+                       @dept.Capacity
+                   </td>
+                   <td>
+                       <!--HTML Helper Method that will navigate to Edit Action Method and will pass the DeptNo as Route Parameter-->
+                       @Html.ActionLink("Edit", "Edit", new { id = dept.DeptNo })
+                   </td>
+                   <td>
+                       <!--HTML Helper Method that will navigate to Delete Action Method and will pass the DeptNo as Route Parameter-->
+                       @Html.ActionLink("Delete", "Delete", new { id = dept.DeptNo })
+                   </td>
+
+                   <td>
+                       <!--HTML Helper Method that will navigate to Delete Action Method and will pass the DeptNo as Route Parameter-->
+                       @Html.ActionLink("Show Employees", "ShowEmployees", new { id = dept.DeptNo })
+                   </td>
+               </tr>      
+             }
+        </tbody>
+    </table>
+}
+
